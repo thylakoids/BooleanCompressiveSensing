@@ -11,8 +11,7 @@ N=nchoosek(28,3);
 N_item=nchoosek(1:28,3);
 
 cutvalue=[0.33 0.33];
-cutvalue(1)=0.33;%%%%%%%%%%%%
-
+cutvalue(1)=0.39;%%%%%%%%%%%%
 measure_matrix=xlsread('original_data_summary\generation5.xls',1,'A1:AB27');
 measure_result=xlsread('original_data_summary\generation5.xls',2);
 
@@ -29,10 +28,10 @@ y=measure_result;
 y(y>=cutvalue(1))=0;
 y(y>0)=1;
 figure
-plot(1:27,[measure_result;y],'-*')
+plot(1:27,[measure_result],'-*')
 title('28 drugs')
 L1=line([1 27],[cutvalue(1) cutvalue(1)]);
-L2=line([1 27],[cutvalue(2) cutvalue(2)]);
+%L2=line([1 27],[cutvalue(2) cutvalue(2)]);
 y=y';
 %% recovery x_hat noise_hat from A,y
 cvx_begin
