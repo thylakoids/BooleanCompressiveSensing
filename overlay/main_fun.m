@@ -1,18 +1,9 @@
-clc
-clear
-close all
+function yy=main_fun(drug_7,measure_matrix,measure_result)
 constant=1;
 linear=1;
-solverange=[1:20];%%1-27
 solverange=randperm(28,20);
-%% read data
-measure_matrix1=xlsread('..\original_data_summary\generation4.xls',1,'A1:CV27');
-drug_7=measure_matrix1(7,:);
-drug_7=find(drug_7);
-measure_matrix=xlsread('..\original_data_summary\generation5.xls',1,'A1:AB27');
-measure_result=xlsread('..\original_data_summary\generation5.xls',2);
+%% add control
 [m,n]=size(measure_matrix);
-%add control
 measure_matrix=[zeros(1,n); measure_matrix];
 measure_result=[1 measure_result];
 %% target

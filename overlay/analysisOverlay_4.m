@@ -10,12 +10,16 @@ measure_matrix=measure_matrix(:,sum(measure_matrix)>0);
 measure_result=xlsread('..\original_data_summary\generation4.xls',2);
 %% solve
 [m,n]=size(measure_matrix);
-x_hat=analysisOverlay_fun([ measure_matrix],measure_result,1);
+%add control
+measure_matrix=[zeros(1,n); measure_matrix];
+measure_result=[1 measure_result];
+x_hat=analysisOverlay_fun([ measure_matrix],measure_result,1,0);
 plot(x_hat,'g'),title('x\_hat')
 %% result
 iterm=nchoosek(drug_7,2);
 n_iterm=size(iterm,1);
 
 iterm_single=[drug_7' drug_7'];
-iterm=[ -1 -1 ;iterm_single;iterm];
-result=iterm((x_hat<-0.01) ,:)
+iterm=[-1 -1;iterm];
+result=[x_hat iterm];
+result=sortrows(result,1)
